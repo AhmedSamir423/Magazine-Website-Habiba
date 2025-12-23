@@ -1,5 +1,133 @@
+/* Base styles: Inspired by cover (pink bg, red accents, sans-serif font) */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 100px;
+    margin: 0;
+    padding: 0;
+    background-color: #ffd1d9; /* Soft pink from cover background */
+    color: #333; /* Dark text for readability */
+    font-family: 'Arial', sans-serif; /* System font for lightweight; matches cover's clean look */
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2.5rem; /* Scales up on larger screens */
+    font-weight: bold;
+    color: #a8324a; /* Reddish from cover's curves */
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #a8324a;
+    margin-top: 0.5rem;
+}
+
+.covers {
+    display: flex;
+    flex-direction: column; /* Stack on mobile */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.cover-image {
+    width: 100%;
+    max-width: 400px; /* Keeps it lightweight */
+    border-radius: 8px; /* Soft editorial feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Premium shadow */
+    transition: transform 0.3s ease; /* Hover micro-interaction */
+}
+
+.cover-image:hover {
+    transform: scale(1.05); /* Subtle zoom on hover/tap */
+}
+
+.content {
+    background-color: rgba(255, 255, 255, 0.8); /* White overlay like cover's text box */
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Animations: Subtle, magazine-like entrances */
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes peek {
+    from { transform: translateY(50%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes breathe {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.animate-fade {
+    opacity: 0;
+    animation: fade 1s ease-in forwards;
+    animation-delay: 0.5s; /* Stagger for title/subtitle */
+}
+
+.animate-peek {
+    opacity: 0;
+    animation: peek 1.2s ease-out forwards;
+    animation-delay: 1s; /* Delay for sequential reveal */
+}
+
+/* Optional breathing for premium feel (apply to .title or images if desired) */
+.breathe {
+    animation: breathe 3s infinite ease-in-out;
+}
+
+/* Parallax-like on scroll (CSS-only, lightweight) */
+body {
+    background-attachment: fixed; /* Fixed bg for subtle parallax if scrolling */
+    background-position: center;
+}
+
+/* Mobile-first responsiveness */
+@media (min-width: 768px) {
+    .covers {
+        flex-direction: row; /* Side-by-side on tablet/desktop */
+        justify-content: center;
+    }
+
+    .title {
+        font-size: 4rem;
+    }
+
+    .subtitle {
+        font-size: 2rem;
+    }
+}
+
+/* Accessibility: Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .animate-fade, .animate-peek, .breathe {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .cover-image:hover {
+        transform: none;
+    }
 }
